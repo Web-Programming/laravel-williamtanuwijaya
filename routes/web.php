@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mockery\Undefined;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,9 @@ Route::get('/dosen', function () {
 Route::get('/fakultas', function () {
     // return view('fakultas.index', ['ilkom' => "Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ilmu Ekonomi"]);
     // return view('fakultas.index')->with('fakultas', ['Fakultas Ilmu Komputer dan Rekayasa', 'Fakultas Ilmu Ekonomi']);
-    $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ilmu Ekonomi"];
-    return view('fakultas.index', compact('fakultas'));
+
+    $kampus = 'Universitas Multi Data Palembang';
+    // $fakultas = ["Fakultas Ilmu Komputer dan Rekayasa", "Fakultas Ilmu Ekonomi"];
+    $fakultas = [];
+    return view('fakultas.index', compact('fakultas', 'kampus'));
 });

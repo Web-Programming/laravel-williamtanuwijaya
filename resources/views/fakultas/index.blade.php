@@ -18,5 +18,7 @@
      @endif
    </ul>
    
+   <x-alert :message="'Ini Pesan Sukses'"/>
+   <x-form.input/>
    @endsection
 {{-- @include('layout.footer') --}}
