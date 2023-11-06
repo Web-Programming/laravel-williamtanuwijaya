@@ -13,7 +13,7 @@
   <tbody>
     @foreach ($allmahasiswa as $item)
         <tr>
-          <td>{{$item->npm}}</td> <td>{{$item->nama_mahasiswa}}</td>
+          <td>{{$item->npm}}</td> <td>{{$item->nama_mahasiswa}}</td> <td>{{$item->prodi->nama}}</td>
         </tr>
     @endforeach
   </tbody>
