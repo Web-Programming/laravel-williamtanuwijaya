@@ -49,14 +49,21 @@ class ProdiController extends Controller
         $validateData = $request->validate(
             [
                 'nama' => 'required|min:5|max:20',
+                'foto' => 'required|file|image|max:5000'
             ]
         );
 
         // dump($validateData);
         // echo $validateData['nama'];
 
+        $ext = $request->foto->getClientOriginalExtension();
+
+        $nama_file = "foto-" . time() . "." . $ext;
+        $path = $request->foto->storeAs('public', $nama_file);
+
         $prodi = new Prodi();
         $prodi->nama = $validateData['nama'];
+        $prodi->foto = $nama_file;
         $prodi->save();
 
         $request->session()->flash('info', "Data prodi $prodi->nama berhasil disimpan ke database");
@@ -72,7 +79,8 @@ class ProdiController extends Controller
         return view('prodi.edit', ['prodi' => $prodi]);
     }
 
-    public function update(Request $request, Prodi $prodi){
+    public function update(Request $request, Prodi $prodi)
+    {
         $validateData = $request->validate([
             'nama' => 'required|min:5|max:20',
         ]);
@@ -82,7 +90,8 @@ class ProdiController extends Controller
         return redirect()->route('prodi.index');
     }
 
-    public function destroy(Prodi $prodi){
+    public function destroy(Prodi $prodi)
+    {
         $prodi->delete();
         return redirect()->route('prodi.index')->with('info', "Prodi $prodi->nama berhasil dihapus.");
     }

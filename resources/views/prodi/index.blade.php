@@ -6,7 +6,7 @@
     <div class = "col">
     <h2>Prodi</h2>
     <div class = "d-md-flex justify-content-md-end">
-    <a href = "{{ url('prodi.create') }}" class = "btn btn-primary"> Tambah </a>
+    <a href = "{{ url('prodi/create') }}" class = "btn btn-primary"> Tambah </a>
 </div>
     @if (session()->has('info'))
         <div class="alert alert-success">
@@ -22,6 +22,7 @@
 <tbody>
     @foreach ($prodis as $item)
     <tr>
+        <td><img src="{{asset('storage/' .$item->foto)}}" width="100px"></td>
         <td>{{$item->nama}}</td>
         <td>
             <form action="{{route('prodi.destroy', ['prodi' => $item->id])}}" method="POST">
